@@ -106,3 +106,7 @@ that mostly streams through memory, fewer threads get nearly all the benefit.
 
 To change how much work each test does, edit the constants in
 `makeCPUWorkload()` and `makeMemoryWorkload()` in `main.swift`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

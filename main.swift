@@ -26,7 +26,7 @@ let mode = args.count > 1 ? args[1] : "both"
 let maxThreads = args.count > 2 ? Int(args[2]) ?? logicalCores * 2 : logicalCores * 2
 let runsPerCount = args.count > 3 ? Int(args[3]) ?? 3 : 3
 
-guard ["cpu", "mem", "both"].contains(mode) else {
+guard ["cpu", "mem", "both"].contains(mode), maxThreads >= 1, runsPerCount >= 1 else {
     print("usage: \(args[0]) [cpu|mem|both] [maxThreads] [runsPerCount]")
     exit(1)
 }

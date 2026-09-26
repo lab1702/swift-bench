@@ -6,7 +6,7 @@ throughput. It has two workloads:
 
 - **CPU-bound**: pure arithmetic that stays in registers. It shows how
   performance scales with the number and speed of your cores.
-- **Memory-bound**: reads through a 512 MB buffer, far larger than any cache.
+- **Memory-bound**: reads through a 512 MiB buffer, far larger than any cache.
   It shows how many threads it takes to use up your memory bandwidth.
 
 ## Requirements

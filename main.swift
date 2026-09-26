@@ -95,18 +95,18 @@ final class Buffer: @unchecked Sendable {
 }
 
 func makeMemoryWorkload() -> Workload {
-    let bufferBytes = 512 << 20   // 512 MB: far bigger than any on-chip cache
-    let chunkBytes = 1 << 20      // 1 MB per chunk
+    let bufferBytes = 512 << 20   // 512 MiB: far bigger than any on-chip cache
+    let chunkBytes = 1 << 20      // 1 MiB per chunk
     let passes = 30               // total data read = passes x buffer size
     let elementsPerChunk = chunkBytes / MemoryLayout<UInt64>.size
     let chunksPerPass = bufferBytes / chunkBytes
 
-    print("Allocating \(bufferBytes >> 20) MB buffer for memory workload...")
+    print("Allocating \(bufferBytes >> 20) MiB buffer for memory workload...")
     let buffer = Buffer(count: bufferBytes / MemoryLayout<UInt64>.size)
 
     return Workload(
         name: "Memory-bound",
-        description: "\(passes) passes over \(bufferBytes >> 20) MB (\((passes * bufferBytes) >> 30) GB read)",
+        description: "\(passes) passes over \(bufferBytes >> 20) MiB (\(String(format: "%.1f", Double(passes * bufferBytes) / 1e9)) GB read)",
         totalChunks: passes * chunksPerPass,
         throughputLabel: "GB/s",
         throughputPerChunk: Double(chunkBytes) / 1e9,
